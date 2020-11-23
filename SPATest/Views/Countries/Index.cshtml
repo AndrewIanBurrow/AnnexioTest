@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SPATest.Models.Country>
+
+@{
+  ViewData["Name"] = "Index";
+}
+
+<h2>Countries List</h2>
+
+<form asp-controller="Countries" asp-action="Index" method="get">
+  <p>
+    Country name: <input type="text" name="SearchString">
+    <input type="submit" value="Filter" />
+  </p>
+</form>
+
+<table className='table table-striped' aria-labelledby="tabelLabel">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Region</th>
+      <th>Sub-Region</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model)
+    {
+    <tr>
+      <td><a asp-action="Country" asp-route-id="@item.alpha3Code">@Html.DisplayFor(modelItem => item.name)</a></td>
+      <td><a asp-action="Region" asp-route-id="@item.region">@Html.DisplayFor(modelItem => item.region)</a></td>
+      <td><a asp-action="SubRegion" asp-route-id="@item.subregion">@Html.DisplayFor(modelItem => item.subregion)</a></td>
+    </tr>
+    }
+  </tbody>
+</table>
+
+
+@*
+  For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
